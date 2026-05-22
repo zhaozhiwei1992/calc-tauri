@@ -1,23 +1,29 @@
 [package]
 name = "app"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "简单计算器 - Rust + Tauri 学习项目"
+authors = ["zhaozhiwei"]
 license = ""
 repository = ""
 default-run = "app"
 edition = "2021"
 rust-version = "1.60"
 
+# Tauri v2 要求 crate 同时生成库和二进制
+# lib 用于移动端和共享代码，bin 用于桌面端
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.5.2" }
+tauri-build = { version = "2", features = [] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.6.5" }
+tauri = { version = "2", features = [] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
